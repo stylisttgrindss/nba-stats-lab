@@ -183,61 +183,24 @@ function bigShoeRebounds() {
     return largestShoePlayer.rebounds;
 }
 
-// Bonus Questions
-function mostPointsScored() {
-    const game = gameObject();
-    let maxPoints = 0;
-    let maxPointsPlayer = null;
+// Demonstration function to show various method calls
+function demonstrateNBAStats() {
+    console.log("Game Object:", gameObject());
 
-    for (let team in game) {
-        for (let playerName in game[team].players) {
-            const player = game[team].players[playerName];
-            if (player.points > maxPoints) {
-                maxPoints = player.points;
-                maxPointsPlayer = playerName;
-            }
-        }
-    }
+    console.log("\n--- Demonstration of Various Functions ---");
 
-    return maxPointsPlayer;
+    console.log("Points Scored by Alan Anderson:", numPointsScored("Alan Anderson"));
+    console.log("Shoe Size of Brook Lopez:", shoeSize("Brook Lopez"));
+
+    console.log("Brooklyn Nets Colors:", teamColors("Brooklyn Nets"));
+    console.log("Team Names:", teamNames());
+
+    console.log("Brooklyn Nets Player Numbers:", playerNumbers("Brooklyn Nets"));
+
+    console.log("Jason Terry's Stats:", playerStats("Jason Terry"));
+
+    console.log("Rebounds for Player with Largest Shoe:", bigShoeRebounds());
 }
 
-function winningTeam() {
-    const game = gameObject();
-    let homePoints = 0;
-    let awayPoints = 0;
-
-    for (let playerName in game.home.players) {
-        homePoints += game.home.players[playerName].points;
-    }
-
-    for (let playerName in game.away.players) {
-        awayPoints += game.away.players[playerName].points;
-    }
-
-    return homePoints > awayPoints ? game.home.teamName : game.away.teamName;
-}
-
-function playerWithLongestName() {
-    const game = gameObject();
-    let longestName = '';
-
-    for (let team in game) {
-        for (let playerName in game[team].players) {
-            if (playerName.length > longestName.length) {
-                longestName = playerName;
-            }
-        }
-    }
-
-    return longestName;
-}
-
-function doesLongNameStealATon() {
-    const longestNamePlayer = playerWithLongestName();
-    const longestNamePlayerSteals = playerStats(longestNamePlayer).steals;
-    const mostPointsScoredPlayer = mostPointsScored();
-    const mostPointsScoredPlayerSteals = playerStats(mostPointsScoredPlayer).steals;
-
-    return longestNamePlayerSteals > mostPointsScoredPlayerSteals;
-}
+// Call the demonstration function when the script runs
+demonstrateNBAStats();
